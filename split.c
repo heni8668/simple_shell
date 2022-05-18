@@ -1,66 +1,104 @@
-#include "holberton.h"
+#include "main.h"
+
+int token_len(char *str, char *delim);
+int count_tokens(char *str, char *delim);
+char **_strtok(char *line, char *delim);
 
 /**
- * splitString - splits string into an array of strings
- * separated by spaces
- * @build: input build
- * Return: true if able to split, false if not
+ * token_len - Locates the delimiter index marking the end
+ *             of the first token contained within a string.
+ * @str: The string to be searched.
+ * @delim: The delimiter character.
+ *
+ * Return: The delimiter index marking the end of
+ *         the intitial token pointed to be str.
  */
-_Bool splitString(config *build)
+int token_len(char *str, char *delim)
 {
-	register unsigned int i = 0;
-	char *tok, *cpy;
+	int index = 0, len = 0;
 
-	if (countWords(build->buffer) == 0)
+	while (*(str + index) && *(str + index) != *delim)
 	{
-		build->args = NULL;
-		free(build->buffer);
-		return (false);
+		len++;
+		index++;
 	}
-	build->args = malloc((countWords(build->buffer) + 1) * sizeof(char *));
-	cpy = _strdup(build->buffer);
-	tok = _strtok(cpy, " ");
-	while (tok)
-	{
-		build->args[i] = _strdup(tok);
-		tok = _strtok(NULL, " ");
-		i++;
-	}
-	build->args[i] = NULL;
-	free(cpy);
-	return (true);
+
+	return (len);
 }
 
 /**
- * countWords - count number of words in a string
- * @str: input string
- * Return: number of words
+ * count_tokens - Counts the number of delimited
+ *                words contained within a string.
+ * @str: The string to be searched.
+ * @delim: The delimiter character.
+ *
+ * Return: The number of words contained within str.
  */
-unsigned int countWords(char *str)
+int count_tokens(char *str, char *delim)
 {
-	register int words = 0;
-	_Bool wordOn = false;
+	int index, tokens = 0, len = 0;
 
-	while (*str)
+	for (index = 0; *(str + index); index++)
+		len++;
+
+	for (index = 0; index < len; index++)
 	{
-		if (isSpace(*str) && wordOn)
-			wordOn = false;
-		else if (!isSpace(*str) && !wordOn)
+		if (*(str + index) != *delim)
 		{
-			wordOn = true;
-			words++;
+			tokens++;
+			index += token_len(str + index, delim);
 		}
-		str++;
 	}
-	return (words);
+
+	return (tokens);
 }
 
 /**
- * isSpace - determines if char is a space
- * @c: input char
- * Return: true or false
+ * _strtok - Tokenizes a string.
+ * @line: The string.
+ * @delim: The delimiter character to tokenize the string by.
+ *
+ * Return: A pointer to an array containing the tokenized words.
  */
-_Bool isSpace(char c)
+char **_strtok(char *line, char *delim)
 {
-	return (c == ' ');
+	char **ptr;
+	int index = 0, tokens, t, letters, l;
+
+	tokens = count_tokens(line, delim);
+	if (tokens == 0)
+		return (NULL);
+
+	ptr = malloc(sizeof(char *) * (tokens + 2));
+	if (!ptr)
+		return (NULL);
+
+	for (t = 0; t < tokens; t++)
+	{
+		while (line[index] == *delim)
+			index++;
+
+		letters = token_len(line + index, delim);
+
+		ptr[t] = malloc(sizeof(char) * (letters + 1));
+		if (!ptr[t])
+		{
+			for (index -= 1; index >= 0; index--)
+				free(ptr[index]);
+			free(ptr);
+			return (NULL);
+		}
+
+		for (l = 0; l < letters; l++)
+		{
+			ptr[t][l] = line[index];
+			index++;
+		}
+
+		ptr[t][l] = '\0';
+	}
+	ptr[t] = NULL;
+	ptr[t + 1] = NULL;
+
+	return (ptr);
 }

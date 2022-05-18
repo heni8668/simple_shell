@@ -1,30 +1,25 @@
-.
-.TH man 15 "April 2021" "ALX-Holberton School" "0x16. C - Simple Shell"
+.TH man SIMPLE_SHELL "May 2022"
 .SH NAME
-.B shellby\fR \- simple UNIX command interpreter
+.B simple_shell\fR \- simple UNIX command interpreter
 .SH SYNOPSIS
-..B #include \(dqholberton.h\(dq
 .sp
 .B int hsh(void)
 .SH DESCRIPTION
-.B Overview
-.sp
-The simple shell is an application that reads lines from either a file or the
-terminal, interprets them, and executes them. Users can interactively type directly
-to the
-running shell or pipe in shell scripts.
-.sp
+.B  simple_shell\fR [\fIfilename\fR]
+.SH DESCRIPTION
+.B  simple_shell\fR is a simple UNIX command language interpreter that reads commands from either a file or standard input and executes them.
+
 .B Invocation
 .in +2n
-\fBShellby\fR can be invoked both interactively and non-interactively.
-If \fBshellby\fR is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
+\fB simple_shell\fR can be invoked both interactively and non-interactively.
+If \fBsimple_shell\fR is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
 
-If \fBshellby\fR is invoked with standard input connected to a terminal (determined by \fIisatty(3)\fR), an \fIinteractive\fR shell is opened.
+If \fBsimple_shell\fR is invoked with standard input connected to a terminal (determined by \fIisatty(3)\fR), an \fIinteractive\fR shell is opened.
 When executing interactively, \fBshellby\fR displays the prompt \fI$ \fR when it is ready to read a command.
 
 Alternatively, if command line arguments are supplied upon invocation, \fBshellby\fR treats the first argument as a file from which to read commands.
 The supplied file should contain one command per line.
-.B Shellby\fR runs each of the commands contained in the file in order before exiting.
+.B  simple_shell\fR runs each of the commands contained in the file in order before exiting.
 .in
 
 .B Environment
@@ -35,7 +30,7 @@ This \fBenvironment\fR is an array of \fIname-value\fR strings describing variab
 
 .B Command Execution
 .in +2n
-After receiving a command, \fBshellby\fR tokenizes it into words using \fB" "\fR as a delimiter.
+After receiving a command, \fBsimple_shell\fR tokenizes it into words using \fB" "\fR as a delimiter.
 The first word is considered the command and all remaining words are considered arguments to that command.
 .B Shellby\fR then proceeds with the following actions:
 
@@ -45,7 +40,7 @@ If there exists a shell builtin by that name, the builtin is invoked.
 .RE
 
 .RS
-2. If the first character of the command is none of a slash (\fI\\\fR), dot (\fI.\fR), nor builtin, \fBshellby\fR searches each element of the
+2. If the first character of the command is none of a slash (\fI\\\fR), dot (\fI.\fR), nor builtin, \fBsimple_shell\fR searches each element of the
 \fBPATH\fR environmental variable for a directory containing an executable file by that name.
 .RE
 
@@ -56,7 +51,7 @@ the shell executes the named program with any remaining arguments given in a sep
 
 .B Exit Status
 .in +2n
-.B Shellby\fR returns the exit status of the last command executed, unless a syntax error occurs, with zero indicating success and non-zero indicating failure.
+.B  simple_shell\fR returns the exit status of the last command executed, unless a syntax error occurs, with zero indicating success and non-zero indicating failure.
 
 If a command is not found, the return status is 127; if a command is found but is not executable, the return status is 126.
 
@@ -65,7 +60,7 @@ All builtins return zero on success and one or two on incorrect usage (indicated
 
 .B Signals
 .in +2n
-While running in interactive mode, \fBshellby\fR ignores the keyboard input \fBCtrl+c\fR.
+While running in interactive mode, \fBsimple_shell\fR ignores the keyboard input \fBCtrl+c\fR.
 Alternatively, an input of end-of-file (\fBCtrl+d\fR) will exit the program.
 .in
 
@@ -78,11 +73,11 @@ Alternatively, an input of end-of-file (\fBCtrl+d\fR) will exit the program.
 .RE
 
 .RS
-.B $?\fR	\fI?\fR is substituted with the return value of the last program executed.
+.B $?\fR			\fI?\fR is substituted with the return value of the last program executed.
 .RE
 
 .RS
-.B $$\FR	The second \fI$\fR is substituted with the current process ID.
+.B $$\FR			The second \fI$\fR is substituted with the current process ID.
 .RE
 
 .B Comments
@@ -112,7 +107,7 @@ Commands separated by a \fI;\fR are executed sequentially.
 The operators \fI&&\fR and \fI||\fR have equal precedence, followed by \fI;\fR.
 .RE
 
-.B Shellby Builtin Commands
+.B simple_shell Builtin Commands
 .in +2n
 
 .RS
@@ -184,9 +179,7 @@ Upon failure, prints a message to \fBstderr\fR.
 .SH SEE ALSO
 access(2), chdir(2), execve(2), _exit(2), exit(3), fflush(3), fork(2), free(3), isatty(3), getcwd(3), malloc(3), open(2), read(2), sh(1), signal(2), stat(2), wait(2), write(2)
 
-.B Shellby\fR emulates basic functionality of the \fBsh\fR shell.
+.B simple_shell\fR emulates basic functionality of the \fBsh\fR shell.
 This man page borrows from the corresponding man pages sh(1) and dash(1).
 .SH AUTHOR
-David Musau and Heyeman
-.SH SEE ALSO
-.BR sh (1)
+Miheret Merid and Alemenew Endawek
