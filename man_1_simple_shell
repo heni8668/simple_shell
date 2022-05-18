@@ -1,0 +1,45 @@
+.TH man 1 "10 April 2020" "ver 1.0" "simple_shell man page"
+.SH NAME
+.B simple_shell, hsh
+\- holberton simple command language interpreter
+.SH SYNOPSIS
+.B hsh
+.I [command_file [argument...]]
+.B builtin-name
+.I [builtin-name]
+.SH DESCRIPTION
+hsh is an sh-compatible command language interpreter intended for simple implementation of a shell in C, in that it executes commands read from the standard input or from a file.
+.TB
+.B This simple shell program has the capabilities to do the following:
+Read and execute commands with or without arguments, handle errors, handle EOF, handle PATH, execute two builtins: exit and env. It does not handle variables, comments, cd command, logical operators. 
+.SH INVOCATION
+.TB
+To invoke the interactive mode of hsh 
+.B ./hsh
+\ is typed into the emulator command line. To invoke the non-interactive mode, pipe command through
+.I echo
+\ or
+.I cat. 
+.TP
+Example 1:
+echo "/bin/ls" | ./hsh
+.TP
+Example 2:
+cat some_file | ./hsh
+.SH BUILTIN COMMANDS
+.TP
+.B exit
+Cause the shell to exit with a status of 0. To exit, type exit or EXIT into the command line.
+.TP
+.B env
+Lists the current environment, where environment variables are stored. The list is an array of strings, with the following format: var=value, where var is the name of the variable and value its value. To invoke, type env into the command line.
+.SH RETURN VALUE
+The return value of a simple command is its exit status. If exited successfully, the exit value will be 0. 
+.SH SEE ALSO
+.I sh(1)
+.SH NOTE
+Still work in progress.
+.SH BUGS
+Bugs are known, but not identifiable at this moment...
+.SH AUTHOR
+Henok tilahun and Bilal abdelkadir.
