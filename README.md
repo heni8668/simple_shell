@@ -292,5 +292,5 @@ $
 ```
 ## Authors :black_nib:
 
-* Alemenew Endawek <[Alemenew Endawek](https://github.com/Alemenew)>
-* Miheret Merid <[Miheret Merid](https://github.com/Mercy-12)>
+* Bilal
+* Henok
