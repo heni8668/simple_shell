@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 int token_len(char *str, char *delim);
 int count_tokens(char *str, char *delim);

@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 int _strlen(const char *s);
 char *_strcpy(char *dest, const char *src);

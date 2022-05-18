@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 char *fill_path_dir(char *path);
 list_t *get_path_dir(char *path);
@@ -138,4 +138,3 @@ list_t *get_path_dir(char *path)
 
 	return (head);
 }
-

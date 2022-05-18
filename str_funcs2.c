@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
@@ -103,4 +103,3 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 	else
 		return (-15);
 }
-

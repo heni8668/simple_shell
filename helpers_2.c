@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 void handle_line(char **line, ssize_t read);
 ssize_t get_new_len(char *line);
